@@ -2,6 +2,8 @@ const express = require('express');
 const handlebar = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 handlebar.registerPartials(__dirname+'/views/partials');
@@ -19,9 +21,9 @@ app.use((req,res,next) => {
  next();
 });
 
-app.use((req,res,next) => {
-  res.render('maintainance.hbs');
-});
+// app.use((req,res,next) => {
+//   res.render('maintainance.hbs');
+// });
 
 app.use(express.static(__dirname+'/public'));//static method
 
@@ -53,6 +55,6 @@ app.get('/bad',(req,res) => {
      error:'404'
  });
 })
-app.listen(3001,() => {
-    console.log('Server is up on port 3001');
+app.listen(port,() => {
+    console.log(`Server is up on port ${port}`);
 });
